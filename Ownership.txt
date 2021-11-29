@@ -1,0 +1,5 @@
+Ticker: TWO   Holding Value: $348,813,000.0   Ownership %: 20.1000314   Quarter first owned: Q2 2011   Source Date: 09/30/2021
+Ticker: BDGE   Holding Value: $176,120,000.0   Ownership %: 27.2904346   Quarter first owned: Q2 2011   Source Date: 09/30/2021
+Ticker: ARR   Holding Value: $158,195,000.0   Ownership %: 20.5982239   Quarter first owned: Q2 2011   Source Date: 09/30/2021
+Ticker: CNOBP   Holding Value: $84,514,000.0   Ownership %: 61.2215217   Quarter first owned: Q2 2015   Source Date: 09/30/2021
+Ticker: SNCE   Holding Value: $20,878,327.7   Ownership %: 22.2569474   Quarter first owned:    Source Date: 10/31/2021
