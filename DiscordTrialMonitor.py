@@ -2,9 +2,9 @@ import discord
 from discord.ext import commands
 import random
 
-from Whale13FData import *
+from TrialMonitor import *
 
-TOKEN = 'ODkwNzQzMzgxMTE2OTgxMjcx.YU0Paw.sRbfvVPQ93Yk5080baXSLV3doKY'
+TOKEN = 'OTIxMzQ2OTk3MzI2MzQwMTE5.YbxlQQ.Dp3IRdCqY-KdH6LH_jGRH8RJ6Q4'
 
 client = commands.Bot(command_prefix='$')
 
@@ -14,7 +14,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):              #logs messages
-    with open('LOG_InstitutionalBot.txt', 'w+') as LOG:
+    with open('LOG_InstitutionalBot.txt', 'a+') as LOG:
         username = str(message.author).split("#")[0]
         userMessage = str(message.content)
         channel = str(message.channel.name)
@@ -24,24 +24,25 @@ async def on_message(message):              #logs messages
     if message.author == client.user:          #so the bot doesnt talk to itself
         return 
 
-    if channel == 'general':       # logic for commands
-        if userMessage.lower() == 'hello':
-            await message.channel.send(f'Hello {username}!')
-            return 
-        elif userMessage.lower() == 'bye':
-            await message.channel.send(f'Bye {username}! Have a good day!')
-            return 
-        elif userMessage.lower() == '!random':
-            response = f'Random Number: {random.randrange(0,1000)}'
-            await message.channel.send(response)
-            return 
-
-    if userMessage.lower() == '!anywhere':
-        await message.channel.send(f'This message can be seen anywhere!')
+    #if channel == 'general':       # logic for commands
+    if userMessage.lower() == 'hello' or userMessage.lower() == 'hi':
+        await message.channel.send(f'Hello {username}!')
+        return 
+    elif userMessage.lower() == 'bye':
+        await message.channel.send(f'Bye {username}! Have a good day!')
+        return 
+    elif userMessage.lower() == 'random':
+        response = f'Random Number: {random.randrange(0,1000)}'
+        await message.channel.send(response)
         return 
 
-    if str(message.channel.name) != 'general': 
-        await client.process_commands(message)                      # passes it to commands i believe
+    # if userMessage.lower() == 'anywhere':
+    #     await message.channel.send(f'This message can be seen anywhere!')
+    #     return 
+
+    #if str(message.channel.name) != 'general':          # passes it to commands, works 
+    
+    await client.process_commands(message)                  
 
 
 

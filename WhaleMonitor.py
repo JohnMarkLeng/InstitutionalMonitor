@@ -28,6 +28,9 @@ def getFundCSV(fund):
 def findStocksByPrice(fundLink, lowerPrice, upperPrice):                #Price
 
     with open('stockPrice.txt', 'w+') as stockPriceFile:
+        if fundLink == "error!":
+            stockPriceFile.write("Error: Please check the fund name")
+            return stockPriceFile
         csv_df = pd.read_csv(fundLink, keep_default_na=False) #creates a dataframe from csv
 
         for index, row in csv_df.iterrows():  #gets index and row information
@@ -57,6 +60,10 @@ def findStocksByPrice(fundLink, lowerPrice, upperPrice):                #Price
 def findByQtrFirstOwned(fundLink, lowerPrice, upperPrice, *qtrAndYear):            #Price, QtrAndYear
 
     with open('QtrFirstOwned.txt', 'w+') as QtrFirstOwnedFile:
+        if fundLink == "error!":
+            QtrFirstOwnedFile.write("Error: Please check the fund name")
+            return QtrFirstOwnedFile
+
         csv_df = pd.read_csv(fundLink, keep_default_na=False) #creates a dataframe from csv
 
         for Qtr in qtrAndYear:
@@ -104,6 +111,10 @@ def findBySharePercentageChange(fundLink, lowerPrice, upperPrice, Increase_Decre
         
     with open('share_%_Change.txt', 'w+') as percentChangeFile:
 
+        if fundLink == "error!":
+            percentChangeFile.write("Error: Please check the fund name")
+            return percentChangeFile
+        
         csv_df = pd.read_csv(fundLink, keep_default_na=False) #creates a dataframe from csv
 
 
@@ -126,7 +137,7 @@ def findBySharePercentageChange(fundLink, lowerPrice, upperPrice, Increase_Decre
                             "   Percent Change in Shares this Q: " + str(stockPercentChange) + "   Source Date: " + csv_df.loc[index, "source_date"] + "\n")
                         percentChangeFile.write(textLine)
 
-                    if(Increase_Decrease == "reduction" and increaseOrDecrease == "reduction" and stockPercentChange <= percentChange and tickerPrice >= lowerPrice and tickerPrice <= upperPrice):              #logic to retrieve data
+                    if(Increase_Decrease == "reduction" and increaseOrDecrease == "reduction" and stockPercentChange <= ( -1 * percentChange) and tickerPrice >= lowerPrice and tickerPrice <= upperPrice):              #logic to retrieve data
                         textLine = ("Ticker: " + csv_df.loc[index,'Symbol'] + "   Holding Value: $" + str("{:,}".format(round(marketValue,2))) +
                             "   Ownership %: " + csv_df.loc[index, "% Ownership"] + "   Quarter first owned: " + csv_df.loc[index, "Qtr first owned"] + 
                             "   Percent Change in Shares this Q: " + str(stockPercentChange) + "   Source Date: " + csv_df.loc[index, "source_date"] + "\n")
@@ -148,6 +159,10 @@ def findBySharePercentageChange(fundLink, lowerPrice, upperPrice, Increase_Decre
 def findByCompanyOwnership(fundLink, lowerPrice, upperPrice, desiredOwnership):                #Price, Ownership in format 15 = 15%
 
     with open('Ownership.txt', 'w+') as ownershipFile:
+
+        if fundLink == "error!":
+            ownershipFile.write("Error: Please check the fund name")
+            return ownershipFile
 
         csv_df = pd.read_csv(fundLink, keep_default_na=False) #creates a dataframe from csv
 
